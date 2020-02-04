@@ -41,24 +41,22 @@ humidity = 0
 pressure = 0
 
 async def monitor_wlan():
+    board.wlan.active(True)
     was_connected = False
     while True:
         if board.wlan.isconnected():
             if not was_connected:
                 print("Monitor: wifi connected!")
+                print('network config:', board.wlan.ifconfig())
+                print('RSSI: ', board.wlan.status('rssi'))
                 was_connected = True
         else:
             print("Monitor: wifi not connected")
             print("connecting to network...")
-            board.wlan.active(True)
             board.wlan.connect(creds.wifi['SSID'], creds.wifi['pass'])
-            while not board.wlan.isconnected():
-                pass
-            print('network config:', board.wlan.ifconfig())
-            print('RSSI: ', board.wlan.status('rssi'))
             was_connected = False
 
-        await asyncio.sleep(15)
+        await asyncio.sleep(10)
 
 async def monitor_pir():
     pir_was_active = False
