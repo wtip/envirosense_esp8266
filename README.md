@@ -35,3 +35,5 @@ pressure_pascal 99470
 # TYPE pir_motion_events counter
 pir_motion_events 443
 ```
+
+![Assembled EnviroSense in 3D printed enclosure](EnviroSense-assembled-with-enclosure.jpg?raw=true)
