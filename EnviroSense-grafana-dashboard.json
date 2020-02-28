@@ -46,6 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
+  "iteration": 1582862306324,
   "links": [],
   "panels": [
     {
@@ -66,12 +67,12 @@
       "id": 2,
       "legend": {
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 4,
@@ -90,7 +91,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(temperature_celsius * 1.8) + 32",
+          "expr": "(temperature_celsius{id=~\"$id\"} * 1.8) + 32",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{ id }}",
@@ -157,12 +158,12 @@
       "id": 9,
       "legend": {
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 4,
@@ -181,7 +182,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "humidity_relative",
+          "expr": "humidity_relative{id=~\"$id\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{ id }}",
@@ -248,12 +249,12 @@
       "id": 8,
       "legend": {
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 2,
@@ -272,7 +273,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pressure_pascal / 100",
+          "expr": "pressure_pascal{id=~\"$id\"} / 100",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{ id }}",
@@ -363,7 +364,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "increase(pir_motion_events [2m])",
+          "expr": "increase(pir_motion_events{id=~\"$id\"} [2m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{ id }}",
@@ -453,7 +454,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "wifi_signal_rssi",
+          "expr": "wifi_signal_rssi{id=~\"$id\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{ id }}",
@@ -508,7 +509,30 @@
     "temperature"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(pressure_pascal,id)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sensor ID",
+        "multi": true,
+        "name": "id",
+        "options": [],
+        "query": "label_values(pressure_pascal,id)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
@@ -542,5 +566,5 @@
   "timezone": "",
   "title": "EnviroSense",
   "uid": "q7ZTwyumz",
-  "version": 12
+  "version": 14
 }
