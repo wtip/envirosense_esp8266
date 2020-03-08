@@ -3,6 +3,8 @@ This current iteration is using a [NodeMCU](https://en.wikipedia.org/wiki/NodeMC
 I'm using MicroPython to export the metrics for a [Prometheus](http://prometheus.io/) server to scrape.
 Metrics are then graphed using a [Grafana](https://grafana.com/) dashboard.
 
+For more details about the project please have a look at my [blog post](https://www.wtip.net/blog/2020/03/envirosense-esp8266-prometheus-exporter/)
+
 ## Requirements
 - tested on [MicroPython](https://github.com/micropython/micropython/) v1.12
 - I had to use [mpy-cross](https://github.com/micropython/micropython/tree/master/mpy-cross) to precompile the bme280_i2c library
